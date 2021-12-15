@@ -12,7 +12,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Logo />
+        <Side>
+          <Logo />
+        </Side>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -21,17 +23,36 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <Side />
       </MainHeader>
     </header>
   );
 };
 
 const MainHeader = styled.div`
-  padding: 0 32px;
+  padding: 18px 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  display: flex;
+  align-items: baseline;
+  height: 72px;
 `;
 
-const Nav = styled.nav``;
+const Nav = styled.nav`
+  display: flex;
+  gap: 48px;
+  margin: 48px;
+`;
+
+/**
+ * This Side component is used to center the nav bar.
+ * It is tricky to center this nav bar due to the asymmetry on the page.
+ * The logo exists on the left while there is blank space on the right.
+ * The Side components will grow evenly on both sides due to flex: 1, which causes
+ * both sides to grow at the same rate, forcing the nav bar to sit in the middle.
+ */
+const Side = styled.div`
+  flex: 1;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
